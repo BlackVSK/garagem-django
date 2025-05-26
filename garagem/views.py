@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from garagem.serializers import MarcaSerializer
+from garagem.models import Marca
 
-# Create your views here.
+class MarcaViewSet(ModelViewSet):
+    queryset = Marca.objects.all()
+    serializer_class = MarcaSerializer
