@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.exceptions import ValidationError  ##Validation erro mostra o erro na interface administrativa
+from django.core.validators import MinValueValidator
 
 class Marca(models.Model):
     nome = models.CharField(max_length=50)
@@ -35,7 +37,7 @@ class Cor(models.Model):
 
 class Veiculo(models.Model):
     ano = models.IntegerField(default=0, blank=True, null=True)
-    preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, default=0)
+    preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, default=0, validators=[MinValueValidator(0)])
     Marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="veiculos", blank=True, null=True)
     Categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, related_name="veiculos", blank=True, null=True)
     Cor = models.ForeignKey(Cor, on_delete=models.PROTECT, related_name="veiculos", blank=True, null=True)
