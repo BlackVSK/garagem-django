@@ -41,6 +41,7 @@ class Veiculo(models.Model):
     Marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="veiculos", blank=True, null=True)
     Categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, related_name="veiculos", blank=True, null=True)
     Cor = models.ForeignKey(Cor, on_delete=models.PROTECT, related_name="veiculos", blank=True, null=True)
+    acessorio= models.ManyToManyField(Acessorio, related_name="veiculos")
 
     def __str__(self):
         return f"{self.Marca}, {self.Categoria}, {self.ano}, {self.Cor}"
